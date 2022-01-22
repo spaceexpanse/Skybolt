@@ -48,7 +48,7 @@ jobs:
         mkdir ${{env.buildDir}}
         cd ${{env.buildDir}}
         cmake -DCMAKE_TOOLCHAIN_FILE=${{env.depsDir}}/conan_paths.cmake ${{github.workspace}}
-        cmake --build . --parallel
+        cmake --build .
     - name: Cmake test
       run: |
         ctest .
