@@ -38,3 +38,8 @@ jobs:
     - name: Conan install
       run: |
         conan install . --build=cxxtimer --build=px_sched
+    - name: Cmake build
+        cmake --build . -DCMAKE_TOOLCHAIN_FILE=$(DEPS_DIR)/conan_paths.cmake
+    - name: Cmake test
+        cd build
+        ctest .
