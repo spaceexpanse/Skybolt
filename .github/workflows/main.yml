@@ -55,4 +55,5 @@ jobs:
         cmake --build .
     - name: Cmake test
       run: |
-        ctest ${{env.buildDir}}
+        cd ${{env.buildDir}}
+        ctest
