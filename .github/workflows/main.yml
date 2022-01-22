@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     env:
-      DEPS_DIR: ${{GITHUB_WORKSPACE}}/deps
+      depsDir: ${{github.workspace}}/deps
     steps:
     - uses: actions/checkout@v2.4.0
     - name: Set up Python ${{ matrix.python-version }}
@@ -39,9 +39,9 @@ jobs:
         pip3 install conan_package_tools
     - name: Conan install
       run: |
-        conan install ${install_dir} --build=cxxtimer --build=px_sched
+        conan install ${{env.depsDir}} --build=cxxtimer --build=px_sched
     - name: Cmake build
-      run: cmake --build . -DCMAKE_TOOLCHAIN_FILE=${{DEPS_DIR}}/conan_paths.cmake
+      run: cmake --build . -DCMAKE_TOOLCHAIN_FILE=${{env.depsDir}}/conan_paths.cmake
     - name: Cmake test
       run: |
         cd build
