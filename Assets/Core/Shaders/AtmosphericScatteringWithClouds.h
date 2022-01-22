@@ -37,7 +37,7 @@ AtmosphericScattering calcAtmosphericScattering(
 #ifdef ENABLE_CLOUDS
 	vec2 mask = sampleCloudShadowAndSkyOcclusionMaskAtPositionRelPlanet(cloudSampler, positionRelPlanet, lightDirection);
 	float shadowMask = mask.x;
-	float occlusionMask = mask.y;
+	float occlusionMask = 1.0;//mask.y;
 	
 	const float hemisphereFraction = 0.5; // ignore the fraction of the irradiance that is scattered back up
 	float cloudTransmission = occlusionMask;
