@@ -39,6 +39,7 @@ jobs:
         pip3 install conan_package_tools
     - name: Conan install
       run: |
+        mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
         conan install ${{github.workspace}} --build=cxxtimer --build=px_sched
     - name: Cmake build
