@@ -23,6 +23,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
         architecture: ${{ matrix.python-arch }}
       if: matrix.prepare-python
+    - name: Install Linux packages
+      run: sudo app-get -y libgl-dev
+      if: runner.os == 'Linux'
     - name: Install C and C++ header files
       run: |
         sudo apt-get update && sudo apt-get install -y gcc-multilib g++-multilib
