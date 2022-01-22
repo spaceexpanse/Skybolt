@@ -33,11 +33,10 @@ jobs:
       run: |
         sudo apt-get update && sudo apt-get install -y gcc-multilib g++-multilib
       if: matrix.install-headerfiles
-    - name: Install conan && conan package tools
+    - name: Install conan
       run: |
         python3 -m pip install --upgrade pip
         pip3 install conan
-        pip3 install conan_package_tools
     - name: Enable C++11
       run: |
         conan profile new default --detect
