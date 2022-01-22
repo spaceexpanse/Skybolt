@@ -39,7 +39,8 @@ jobs:
         pip3 install conan_package_tools
     - name: Conan install
       run: |
-        conan install ${{env.depsDir}} --build=cxxtimer --build=px_sched
+        cd ${{env.depsDir}}
+        conan install ${{github.workspace}} --build=cxxtimer --build=px_sched
     - name: Cmake build
       run: cmake --build . -DCMAKE_TOOLCHAIN_FILE=${{env.depsDir}}/conan_paths.cmake
     - name: Cmake test
