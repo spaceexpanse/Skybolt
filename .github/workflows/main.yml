@@ -16,6 +16,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     env:
+      buildDir: ${{github.workspace}}/build
       depsDir: ${{github.workspace}}/deps
     steps:
     - uses: actions/checkout@v2.4.0
@@ -43,8 +44,11 @@ jobs:
         cd ${{env.depsDir}}
         conan install ${{github.workspace}} --build=cxxtimer --build=px_sched
     - name: Cmake build
-      run: cmake --build . -DCMAKE_TOOLCHAIN_FILE=${{env.depsDir}}/conan_paths.cmake
+      run: |
+        mkdir ${{env.buildDir}}
+        cd ${{env.buildDir}}
+        cmake -DCMAKE_TOOLCHAIN_FILE=${{env.depsDir}}/conan_paths.cmake ${{github.workspace}}
+        cmake --build . --parallel
     - name: Cmake test
       run: |
-        cd build
         ctest .
