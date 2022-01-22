@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@conan
+    - uses: actions/checkout@v2.4.0
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
