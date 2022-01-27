@@ -45,7 +45,7 @@ jobs:
       run: |
         mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
-        conan install ${{github.workspace}} --build=cxxtimer --build=px_sched
+        conan install ${{github.workspace}} --build=cxxtimer --build=px_sched --build=xsimd
     - name: Cmake build
       run: |
         mkdir ${{env.buildDir}}
