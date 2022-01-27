@@ -5,9 +5,15 @@ class SkyboltConan(ConanFile):
     name = "skybolt"
     version = "1.1"
     settings = "os", "compiler", "arch", "build_type"
-    options = {"shared": [True, False]}
-    default_options = {"shared": False}
-    generators = ["cmake_paths", "cmake_find_package"]
+    options = {
+		"shared": [True, False],
+		"enableFftOcean": [True, False]
+	}
+    default_options = {
+        "shared": False,
+        "enableFftOcean": True
+    }
+    generators = ["cmake_paths", "cmake_find_package", "virtualrunenv"]
     exports = "Conan/*"
     exports_sources = "*"
 
@@ -34,13 +40,19 @@ class SkyboltConan(ConanFile):
     def requirements(self):
         self.include_package("cxxtimer", "1.0.0")
         self.include_package("px_sched", "1.0.0")
+		
+        if self.options.enableFftOcean:
+            self.include_package("xsimd", "7.4.10")
 
     def build(self):
         cmake = CMake(self)
 
         if self.options.shared == False:
             cmake.definitions["Boost_STATIC_LIBS"] = "true"
-
+			
+        if self.options.enableFftOcean == True:
+            cmake.definitions["BUILD_FFT_OCEAN_PLUGIN"] = "true"
+			
         cmake.definitions["CMAKE_TOOLCHAIN_FILE"] = "conan_paths.cmake"
         cmake.configure()
         cmake.build()
