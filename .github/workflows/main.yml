@@ -1,4 +1,5 @@
 name: Build Skybolt
+on: 
   push:
     branches:
 #      - main
@@ -14,6 +15,7 @@ name: Build Skybolt
     branches:
 #      - main
      - dev
+
 jobs:
   test:
     strategy:
