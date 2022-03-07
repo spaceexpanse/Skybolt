@@ -77,7 +77,7 @@ jobs:
 #      if: ${{ github.ref == 'refs/heads/main' }}
       working-directory: ${{ github.workspace }}/build
       shell: cmd
-      run: '7z a "${{ github.workspace }}/build/spxp-rtss-engine-${{ matrix.architecture }}.zip" .'
+      run: '7z a "${{ github.workspace }}/build/spxp-rtss-engine.zip" .'
 
     - name: Upload Build Artifact
 #      if: ${{ github.ref == 'refs/heads/main' }}
@@ -85,7 +85,7 @@ jobs:
       with:
         name: Skybolt-${{ matrix.architecture }}
         # A file, directory or wildcard pattern that describes what to upload
-        path: ${{ github.workspace }}/build/Skybolt-${{ matrix.architecture }}.zip
+        path: ${{ github.workspace }}/build/Skybolt.zip
         retention-days: 60
 
     - name: Create Release
@@ -95,7 +95,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v.${{ github.ref_name }}.${{ github.run_number }}.a
-        release_name: SpXp RTSS Engine ${{ github.ref_name }}.${{ github.run_number }}-${{ matrix.architecture }}
+        release_name: SpXp RTSS Engine ${{ github.ref_name }}.${{ github.run_number }}
         draft: true
         prerelease: false
 
@@ -107,8 +107,8 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
 #        asset_path: ./spacexpanse-rtss-engine-bin-${{ github.job }}.zip
-        asset_path: ${{ github.workspace }}/build/spxp-rtss-engine-${{ matrix.architecture }}.zip
+        asset_path: ${{ github.workspace }}/build/spxp-rtss-engine.zip
 #        asset_name: spacexpanse-rtss-engine-bin-${{ github.job }}.zip
-        asset_name: spxp-rtss-engine-${{ matrix.architecture }}.zip
+        asset_name: spxp-rtss-engine.zip
         asset_content_type: application/zip
 
