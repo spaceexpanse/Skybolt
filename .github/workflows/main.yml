@@ -80,8 +80,8 @@ jobs:
       shell: bash
 #      run: '7z a "${{ github.workspace }}/build/skybolt-${{ matrix.os }}.zip" .'
       run: |
-        cd bin
-        ls 
+        cd bin/FlightSimApp
+        ls -la
         zip skybolt-${{ matrix.os }}.zip /bin
     - name: Upload Build Artifact
 #      if: ${{ github.ref == 'refs/heads/main' }}
