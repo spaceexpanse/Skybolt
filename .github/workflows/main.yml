@@ -79,7 +79,9 @@ jobs:
       working-directory: ${{ github.workspace }}/build
       shell: bash
 #      run: '7z a "${{ github.workspace }}/build/skybolt-${{ matrix.os }}.zip" .'
-      run: 'zip --junk-paths -r "${{ github.workspace }}/build/skybolt-${{ matrix.os }}" ${{ github.workspace }}/build .'
+      run: |
+        ls 
+        'zip --junk-paths -r "${{ github.workspace }}/build/skybolt-${{ matrix.os }}" ${{ github.workspace }}/build .'
     - name: Upload Build Artifact
 #      if: ${{ github.ref == 'refs/heads/main' }}
       uses: actions/upload-artifact@v2.2.4
