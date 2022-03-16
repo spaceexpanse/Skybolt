@@ -1,4 +1,4 @@
-# Skybolt Engine
+# Skybolt Engine     
 Skybolt is a real-time planetary environment rendering engine, designed for flight simulators, aerospace R&D, and geospatial applications. Skybolt is written in C++, based on OpenSceneGraph, and supports CIGI for communicating with host applications. Skybolt also features a Python API for easy integration with science and engineering research tools.
 
 The Skybolt repository includes Sprocket, a GUI application for creating scenarios and visualizing data. Sprocket supports python scripting and node-based graphical programming.
