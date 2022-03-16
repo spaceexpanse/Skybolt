@@ -21,9 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-20.04]
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-20.04
             python-arch: "x64"
             python-version: "3.6.x" 
             install-headerfiles: true
@@ -43,7 +43,7 @@ jobs:
         architecture: ${{ matrix.python-arch }}
       if: matrix.prepare-python
     - name: Install Linux packages
-      run: sudo apt-get install -y libgl-dev
+      run: sudo apt-get --fix-missing update && sudo apt-get install -y libgl-dev
       if: runner.os == 'Linux'
     - name: Install C and C++ header files
       run: |
