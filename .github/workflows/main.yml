@@ -21,9 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-20.04]
         include:
-          - os: ubuntu-18.04
+          - os: ubuntu-20.04
             python-arch: "x64"
             python-version: "3.6.x" 
             install-headerfiles: true
@@ -58,13 +58,10 @@ jobs:
         conan profile new default --detect
         conan profile update settings.compiler.libcxx=libstdc++11 default
     - name: Conan install
-      env:
-        CONAN_SYSREQUIRES_MODE: enabled
-        CONAN_SYSREQUIRES_SUDO: 0
-      run: | 
+      run: |
         mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
-        conan install ${{github.workspace}} --build=cxxtimer --build=px_sched --build=xsimd 
+        conan install ${{github.workspace}} --build=cxxtimer --build=px_sched --build=xsimd
     - name: Cmake build
       run: |
         mkdir ${{env.buildDir}}
@@ -74,5 +71,5 @@ jobs:
     - name: Cmake test
       run: |
         cd ${{env.buildDir}}
-        ctest     
-        
+        ctest
+         
