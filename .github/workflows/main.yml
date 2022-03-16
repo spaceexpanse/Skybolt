@@ -44,7 +44,8 @@ jobs:
       if: matrix.prepare-python
     - name: Install Linux packages
       run: |
-        sudo apt-get --fix-missing update && sudo apt-get upgrade -y 
+        sudo apt-get --fix-missing update && sudo apt-get install -f
+#        sudo apt-get upgrade -y 
         sudo apt-get install -y libgl-dev
       if: runner.os == 'Linux'
     - name: Install C and C++ header files
@@ -64,6 +65,7 @@ jobs:
         CONAN_SYSREQUIRES_MODE: enabled
         CONAN_SYSREQUIRES_SUDO: 0
       run: |
+        sudo apt-get update
         mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
         conan install ${{github.workspace}} --build=cxxtimer --build=px_sched --build=xsimd
