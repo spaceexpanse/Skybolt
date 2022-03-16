@@ -82,7 +82,7 @@ jobs:
       run: |
         cd bin
         ls 
-        zip -r skybolt-${{ matrix.os }}.zip /bin/*.exe
+        zip skybolt-${{ matrix.os }}.zip /bin/*.exe
     - name: Upload Build Artifact
 #      if: ${{ github.ref == 'refs/heads/main' }}
       uses: actions/upload-artifact@v2.2.4
