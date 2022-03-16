@@ -63,7 +63,7 @@ jobs:
     - name: Conan install
       env:
         CONAN_SYSREQUIRES_MODE: enabled
-        CONAN_SYSREQUIRES_SUDO: 0
+#        CONAN_SYSREQUIRES_SUDO: 0
       run: |
         sudo apt-get update
         mkdir ${{env.depsDir}}
