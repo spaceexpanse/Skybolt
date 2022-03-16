@@ -21,9 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-18.04]
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-18.04
             python-arch: "x64"
             python-version: "3.6.x" 
             install-headerfiles: true
