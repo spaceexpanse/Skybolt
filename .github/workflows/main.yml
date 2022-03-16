@@ -64,8 +64,7 @@ jobs:
       env:
         CONAN_SYSREQUIRES_MODE: enabled
 #        CONAN_SYSREQUIRES_SUDO: 0
-      run: |
-        sudo apt-get update
+      run: | 
         mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
         conan install ${{github.workspace}} --build=cxxtimer --build=px_sched --build=xsimd
