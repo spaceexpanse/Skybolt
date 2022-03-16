@@ -43,7 +43,7 @@ jobs:
         architecture: ${{ matrix.python-arch }}
       if: matrix.prepare-python
     - name: Install Linux packages
-      run: sudo apt-get update && sudo apt-get install -y libgl-dev
+      run: sudo apt-get update && sudo apt-get install -y zip libgl-dev
       if: runner.os == 'Linux'
     - name: Install C and C++ header files
       run: |
@@ -77,9 +77,9 @@ jobs:
     - name: Pack
 #      if: ${{ github.ref == 'refs/heads/main' }}
       working-directory: ${{ github.workspace }}/build
-      shell: cmd
-      run: '7z a "${{ github.workspace }}/build/skybolt-${{ matrix.os }}.zip" .'
-
+      shell: bash
+#      run: '7z a "${{ github.workspace }}/build/skybolt-${{ matrix.os }}.zip" .'
+      run: 'zip --junk-paths "${{ github.workspace }}/build/skybolt-${{ matrix.os }}" .'
     - name: Upload Build Artifact
 #      if: ${{ github.ref == 'refs/heads/main' }}
       uses: actions/upload-artifact@v2.2.4
