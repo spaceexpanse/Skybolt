@@ -58,6 +58,9 @@ jobs:
         conan profile new default --detect
         conan profile update settings.compiler.libcxx=libstdc++11 default
     - name: Conan install
+      env:
+        CONAN_SYSREQUIRES_MODE: enabled
+        CONAN_SYSREQUIRES_SUDO: 0
       run: |
         mkdir ${{env.depsDir}}
         cd ${{env.depsDir}}
